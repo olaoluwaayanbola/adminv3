@@ -1,0 +1,53 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card } from '../../components/ui/Card';
+import { Tabs } from '../../components/ui/Tabs';
+import { Button } from '../../components/ui/Button';
+import { CurrentProvidersTab } from './CurrentProvidersTab';
+import { NewProvidersTab } from './NewProvidersTab';
+
+export const ProvidersPage = () => {
+  const [activeTab, setActiveTab] = useState<'current' | 'new'>('current');
+  const navigate = useNavigate();
+
+  return (
+    <section className="space-y-6">
+      <header className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cp365-textMuted">
+            Admin / Provider
+          </p>
+          <h1 className="mt-1 text-3xl font-semibold text-cp365-textMain">Provider</h1>
+          <p className="text-sm text-cp365-textMuted">
+            Review new provider applications and manage current teams.
+          </p>
+        </div>
+        <Button variant="secondary" onClick={() => navigate('/dashboard')}>
+          Go Back
+        </Button>
+      </header>
+
+      <Card className="rounded-3xl p-6">
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-semibold uppercase tracking-wide text-cp365-textMuted">
+            Provider Management
+          </p>
+          <span className="text-sm font-medium text-cp365-textMuted">
+            Updated today • {new Date().toLocaleDateString()}
+          </span>
+        </div>
+        <div className="mt-6">
+          <Tabs
+            tabs={[
+              { id: 'current', label: 'Current Providers' },
+              { id: 'new', label: 'New Providers' },
+            ]}
+            activeTab={activeTab}
+            onChange={(tabId) => setActiveTab(tabId as 'current' | 'new')}
+          />
+        </div>
+        <div className="pt-6">{activeTab === 'current' ? <CurrentProvidersTab /> : <NewProvidersTab />}</div>
+      </Card>
+    </section>
+  );
+};
