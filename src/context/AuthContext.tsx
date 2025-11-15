@@ -1,10 +1,31 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { AuthContext } from './auth-context';
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const AUTH_STORAGE_KEY = 'auth:isAuthenticated';
 
-  const login = () => {
+const getInitialAuthState = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  return localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+};
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(getInitialAuthState);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (isAuthenticated) {
+      localStorage.setItem(AUTH_STORAGE_KEY, 'true');
+    } else {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+    }
+  }, [isAuthenticated]);
+
+  const login = (_email: string, _password: string) => {
     setIsAuthenticated(true);
   };
 
