@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card } from "../components/ui/Card";
-import { Pill } from "../components/ui/Pill";
+// import { Pill } from "../components/ui/Pill";
 
 const dashboardCards = [
     {
@@ -8,7 +8,7 @@ const dashboardCards = [
         title: "Providers",
         description: "Manage onboarding, approval, and assignments.",
         to: "/providers",
-        status: "Session in progress",
+        // status: "Session in progress"
         interactive: true,
     },
     {
@@ -62,7 +62,7 @@ export const DashboardPage = () => (
                             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cp365-primary/15 text-cp365-primary">
                                 {card.title.slice(0, 1)}
                             </div>
-                            {card.status && <Pill>{card.status}</Pill>}
+                            {/* {card.status && <Pill>{card.status}</Pill>} */}
                         </div>
                         <div className="mt-6 space-y-2">
                             <h2 className="text-xl font-semibold text-cp365-textMain">
