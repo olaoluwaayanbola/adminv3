@@ -6,11 +6,12 @@ import './index.css';
 import App from './App.tsx';
 import { PracticeContextProvider } from './context/PracticeContext';
 import { store } from './store';
+import { REPO_NAME } from './config/repo';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ReduxProvider store={store}>
-      <BrowserRouter basename="/admin-v3">
+      <BrowserRouter basename={`/${REPO_NAME}`}>
         <PracticeContextProvider>
           <App />
         </PracticeContextProvider>
