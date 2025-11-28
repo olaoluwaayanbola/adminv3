@@ -24,5 +24,8 @@ export default defineConfig({
     //   },
     // },
   ],
-  // base: `/${REPO_NAME}/`,
+  build:{
+    outDir: 'dist',
+  },
+  base: `/adminv3/`,
 })
