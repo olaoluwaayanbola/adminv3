@@ -1,12 +1,23 @@
+# Netlify Build Configuration
 [build]
+  # Base directory: root (automatically detected, package.json is at root)
+  # Build command: runs TypeScript compilation then Vite build
   command = "npm run build"
+  # Publish directory: where Vite outputs the built files
   publish = "dist"
 
+# SPA Routing - Redirect all routes to index.html for client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Build Environment Variables
 [build.environment]
+  # Node.js version for Netlify build
   NODE_VERSION = "20"
+
+# Note: Add environment variables in Netlify dashboard:
+# - VITE_API_BASE_URL (if needed for your API)
+# Go to: Site settings > Environment variables
 
