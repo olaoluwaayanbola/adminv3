@@ -24,9 +24,5 @@ export default defineConfig({
     //   },
     // },
   ],
-  build:{
-    outDir: 'dist',
-    // base: '/care-plan-365/adminv3/',
-  }
   // base: `/${REPO_NAME}/`,
 })
